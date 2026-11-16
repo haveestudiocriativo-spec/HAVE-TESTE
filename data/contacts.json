@@ -1,0 +1,22 @@
+{
+  "whatsapp": {
+    "number": "+55 (45) 9978-2555",
+    "url": "https://wa.me/554599782555?text=Ol%C3%A1%2C%20equipe%20Have!%20Gostaria%20de%20falar%20sobre%20um%20projeto."
+  },
+  "instagram": {
+    "handle": "@haveestudiocriativo",
+    "url": "https://instagram.com/haveestudiocriativo"
+  },
+  "youtube": {
+    "url": "https://www.youtube.com/@HAVEESTUDIOCRIATIVO"
+  },
+  "email": {
+    "address": "haveestudiocriativo@gmail.com",
+    "url": "mailto:haveestudiocriativo@gmail.com?subject=Contato%20via%20Site"
+  },
+  "address": {
+    "full": "Rua Bartolomeu de Gusmão, 1379 - Sala 17 - Centro, Foz do Iguaçu - PR, 85852-130",
+    "mapsUrl": "https://www.google.com/maps/search/?api=1&query=Rua+Bartolomeu+de+Gusm%C3%A3o,+1379+-+Sala+17+-+Centro,+Foz+do+Igua%C3%A7u+-+PR,+85852-130",
+    "embedUrl": "https://www.google.com/maps?q=Rua+Bartolomeu+de+Gusm%C3%A3o,+1379+-+Sala+17+-+Centro,+Foz+do+Igua%C3%A7u+-+PR,+85852-130&output=embed"
+  }
+}

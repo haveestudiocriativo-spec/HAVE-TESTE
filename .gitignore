@@ -1,0 +1,9 @@
+.DS_Store
+node_modules/
+*.zip
+.claude/
+data/users.json
+data/contact-messages.json
+data/lgpd-requests.json
+.env
+_backup-raiz-antiga/

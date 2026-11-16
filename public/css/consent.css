@@ -1,0 +1,58 @@
+/* Banner de cookies e bloqueio do mapa — Have Studio Criativo */
+
+.consent {
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 200;
+  max-width: 560px;
+  background: #111;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 14px;
+  padding: 18px 20px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+  font-family: var(--font, "Archivo", Arial, sans-serif);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.consent[hidden] { display: none; }
+.consent p { margin: 0 0 12px; color: rgba(255, 255, 255, 0.78); }
+.consent strong { color: #fff; }
+.consent a { color: #2fa8ff; text-decoration: underline; text-underline-offset: 3px; }
+.consent__actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.consent__btn {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  padding: 11px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+.consent__btn--primary { background: #fff; color: #000; border-color: #fff; }
+.consent__btn:hover { opacity: 0.85; }
+
+.contact-map__consent {
+  height: 100%;
+  min-height: 240px;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  padding: 24px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+}
+.contact-map__consent[hidden] { display: none; }
+.contact-map__consent p { margin: 0; max-width: 46ch; }
+.contact-map__consent a { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 600px) {
+  .consent { left: 10px; right: 10px; bottom: 10px; padding: 16px; }
+}

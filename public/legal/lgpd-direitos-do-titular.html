@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Direitos do Titular (LGPD) | Have Studio Criativo</title>
+  <meta name="description" content="Formulário para exercer seus direitos de titular de dados pessoais perante a Have Studio Criativo, conforme o art. 18 da LGPD.">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" type="image/png" href="/images/brand/have-logo-small.png">
+  <link rel="stylesheet" href="/css/legal.css">
+</head>
+<body class="legal">
+  <header class="legal-top">
+    <a href="/" aria-label="Voltar ao site da Have Studio Criativo"><img src="/images/brand/have-logo-primary.png" alt="Have Studio Criativo" width="800" height="283"></a>
+    <a href="/">← Voltar ao site</a>
+  </header>
+
+  <main class="legal-wrap">
+    <p class="legal-eyebrow">LGPD · Lei nº 13.709/2018</p>
+    <h1>Direitos do titular de dados</h1>
+    <p class="legal-meta">Use este formulário para pedir acesso, correção, exclusão ou outros direitos sobre os seus dados pessoais, ou para pedir a retirada da sua imagem de um material publicado pela HAVE.</p>
+
+    <div class="legal-note">
+      <p>Respondemos em até <strong>15 dias</strong>. Para proteger você, podemos pedir informações adicionais para confirmar sua identidade. <strong>Não envie documentos, CPF ou senhas neste formulário.</strong> Veja a <a href="/legal/politica-de-privacidade.html">Política de Privacidade</a>.</p>
+    </div>
+
+    <form id="lgpdForm" novalidate>
+      <div class="hp" aria-hidden="true">
+        <label>Não preencha este campo <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div class="field">
+        <label for="lgpdName">Nome completo</label>
+        <input id="lgpdName" name="name" type="text" autocomplete="name" maxlength="120" required>
+        <div class="field-error" data-error-for="name"></div>
+      </div>
+
+      <div class="field">
+        <label for="lgpdEmail">E-mail para resposta</label>
+        <input id="lgpdEmail" name="email" type="email" autocomplete="email" maxlength="160" required>
+        <div class="field-error" data-error-for="email"></div>
+      </div>
+
+      <div class="field">
+        <label for="lgpdRelation">Qual é a sua relação com a HAVE?</label>
+        <select id="lgpdRelation" name="relation" required>
+          <option value="">Selecione</option>
+          <option value="visitante">Visitante do site</option>
+          <option value="cliente">Cliente ou ex-cliente</option>
+          <option value="pessoa-filmada">Pessoa que aparece em vídeo ou foto da HAVE</option>
+          <option value="responsavel-legal">Responsável legal por menor de idade que aparece em material da HAVE</option>
+          <option value="equipe-parceiro">Equipe, fornecedor ou parceiro</option>
+          <option value="outro">Outra</option>
+        </select>
+        <div class="field-error" data-error-for="relation"></div>
+      </div>
+
+      <fieldset class="field">
+        <legend>O que você deseja? <span class="hint">Marque uma ou mais opções (art. 18 da LGPD)</span></legend>
+        <label class="check"><input type="checkbox" name="requests" value="confirmacao-acesso"> Confirmar se tratam meus dados e acessá-los</label>
+        <label class="check"><input type="checkbox" name="requests" value="correcao"> Corrigir dados incompletos, inexatos ou desatualizados</label>
+        <label class="check"><input type="checkbox" name="requests" value="anonimizacao-bloqueio-eliminacao"> Anonimizar, bloquear ou eliminar dados desnecessários ou excessivos</label>
+        <label class="check"><input type="checkbox" name="requests" value="eliminacao-consentimento"> Eliminar dados tratados com base no meu consentimento</label>
+        <label class="check"><input type="checkbox" name="requests" value="portabilidade"> Portabilidade dos meus dados a outro fornecedor</label>
+        <label class="check"><input type="checkbox" name="requests" value="compartilhamento"> Saber com quem meus dados foram compartilhados</label>
+        <label class="check"><input type="checkbox" name="requests" value="informacao-consentimento"> Informação sobre a possibilidade de não consentir e suas consequências</label>
+        <label class="check"><input type="checkbox" name="requests" value="revogacao-consentimento"> Revogar consentimento dado anteriormente</label>
+        <label class="check"><input type="checkbox" name="requests" value="remocao-imagem"> Retirar ou alterar minha imagem/voz em material publicado pela HAVE</label>
+        <label class="check"><input type="checkbox" name="requests" value="outro"> Outro pedido ou reclamação sobre meus dados</label>
+        <div class="field-error" data-error-for="requests"></div>
+      </fieldset>
+
+      <div class="field">
+        <label for="lgpdDetails">Detalhes do pedido <span class="hint">Se for retirada de imagem, informe o endereço (link) ou o nome do vídeo/foto e a data aproximada.</span></label>
+        <textarea id="lgpdDetails" name="details" maxlength="3000" required></textarea>
+        <div class="field-error" data-error-for="details"></div>
+      </div>
+
+      <label class="check">
+        <input type="checkbox" name="declaration" value="yes" required>
+        <span>Declaro que as informações são verdadeiras e que sou o titular dos dados ou o responsável legal por ele. Li a <a href="/legal/politica-de-privacidade.html">Política de Privacidade</a>.</span>
+      </label>
+      <div class="field-error" data-error-for="declaration"></div>
+
+      <div class="btn-row">
+        <button class="btn" type="submit" id="lgpdSubmit">Enviar pedido</button>
+      </div>
+      <div class="form-status" id="lgpdStatus" role="status" aria-live="polite"></div>
+    </form>
+
+    <h2>Prefere falar por e-mail?</h2>
+    <p>Escreva para <a href="mailto:haveestudiocriativo@gmail.com?subject=LGPD%20-%20Direitos%20do%20titular">haveestudiocriativo@gmail.com</a> com o assunto “LGPD”. Você também pode peticionar à <a href="https://www.gov.br/anpd" target="_blank" rel="noopener noreferrer">ANPD</a>.</p>
+  </main>
+
+  <footer class="legal-foot">
+    <a href="/legal/politica-de-privacidade.html">Política de Privacidade</a>
+    <a href="/legal/termos-de-servico.html">Termos de Serviço</a>
+    <a href="/legal/aviso-de-cookies.html">Aviso de Cookies</a>
+    <a href="/legal/lgpd-direitos-do-titular.html">Direitos do titular (LGPD)</a>
+    <a href="/legal/autorizacao-uso-de-imagem.html">Autorização de imagem</a>
+  </footer>
+  <script src="/js/legal.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Painel · Have Studio Criativo</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/png" href="/images/brand/have-logo-small.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+
+    <!-- Login -->
+  <main class="login" id="login">
+    <form class="login__box" id="loginForm">
+      <img src="/images/brand/have-logo-primary.png" alt="Have Studio Criativo" width="800" height="283">
+      <p class="muted">Painel do portfólio</p>
+      <label class="field">
+        <span>E-mail</span>
+        <input type="email" name="email" id="loginUser" autocomplete="username" autocapitalize="none" spellcheck="false" required>
+      </label>
+      <label class="field">
+        <span>Senha</span>
+        <div class="field__password">
+          <input type="password" name="password" id="loginToken" autocomplete="current-password" required>
+          <button class="eye" type="button" id="toggleToken" aria-label="Mostrar senha" aria-pressed="false">
+            <!-- olho fechado (estado inicial) -->
+            <svg class="eye__closed" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 3l18 18" />
+              <path d="M10.585 10.587a2 2 0 0 0 2.828 2.828" />
+              <path d="M9.363 5.365A9.466 9.466 0 0 1 12 5c4.478 0 8.268 2.943 9.542 7a9.999 9.999 0 0 1-4.208 5.108" />
+              <path d="M6.228 6.228A9.956 9.956 0 0 0 2.458 12c1.274 4.057 5.064 7 9.542 7a9.44 9.44 0 0 0 4.213-.99" />
+            </svg>
+            <!-- olho aberto (aparece quando visível) -->
+            <svg class="eye__open" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              <circle cx="12" cy="12" r="3" />
+            </svg>
+          </button>
+        </div>
+      </label>
+      <button class="btn btn--primary" type="submit">Entrar</button>
+      <p class="error" id="loginError" role="alert"></p>
+      <button class="btn btn--ghost" type="button" id="showRequest">Solicitar acesso</button>
+    </form>
+
+    <!-- Solicitar acesso: só entra depois que outro administrador aprovar -->
+    <form class="login__box" id="requestForm" autocomplete="off" hidden>
+      <img src="/images/brand/have-logo-primary.png" alt="Have Studio Criativo" width="800" height="283">
+      <p class="muted">Solicitar acesso ao painel. Um administrador precisa aprovar antes de você poder entrar.</p>
+      <label class="field"><span>Usuário</span><input name="username" required minlength="3" maxlength="32" pattern="[a-zA-Z0-9._\-]{3,32}" autocapitalize="none" spellcheck="false" placeholder="ex.: bruno"></label>
+      <label class="field"><span>E-mail</span><input type="email" name="email" required maxlength="160" autocapitalize="none" spellcheck="false" autocomplete="email"></label>
+      <label class="field"><span>Senha (mín. 8 caracteres)</span><input type="password" name="password" required minlength="8" maxlength="200" autocomplete="new-password"></label>
+      <label class="field"><span>Confirmar senha</span><input type="password" name="confirm" required minlength="8" maxlength="200" autocomplete="new-password"></label>
+      <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn btn--primary" type="submit">Enviar solicitação</button>
+      <p class="error" id="requestMsg" role="alert"></p>
+      <button class="btn btn--ghost" type="button" id="backToLogin">Voltar ao login</button>
+    </form>
+  </main>
+
+  <!-- App -->
+  <div class="app" id="app" hidden>
+    <header class="top">
+      <a href="/" target="_blank" rel="noopener"><img src="/images/brand/have-logo-primary.png" alt="Have Studio Criativo" width="800" height="283"></a>
+      <nav class="tabs" role="tablist">
+        <button class="tab is-active" data-tab="projects" role="tab" aria-selected="true">Portfólio</button>
+        <button class="tab" data-tab="contacts" role="tab" aria-selected="false">Mensagens <span class="badge" id="contactCount"></span></button>
+        <button class="tab" data-tab="users" role="tab" aria-selected="false">Usuários <span class="badge" id="requestCount"></span></button>
+      </nav>
+      <span class="who muted" id="whoami"></span>
+      <button class="btn btn--ghost" id="logout" type="button">Sair</button>
+    </header>
+
+    <!-- Projetos -->
+    <section class="view" id="view-projects">
+      <div class="view__head">
+        <div>
+          <h1>Portfólio</h1>
+          <p class="muted">Cada projeto vira um slide com vídeo em tela cheia na página inicial. A ordem define a sequência.</p>
+        </div>
+        <button class="btn btn--primary" id="newProject" type="button">+ Novo projeto</button>
+      </div>
+      <div class="list" id="projectList"></div>
+    </section>
+
+    <!-- Mensagens -->
+    <section class="view" id="view-contacts" hidden>
+      <div class="view__head">
+        <div>
+          <h1>Mensagens</h1>
+          <p class="muted">Recebidas pelo formulário de contato do site.</p>
+        </div>
+      </div>
+      <div class="list" id="contactList"></div>
+    </section>
+
+    <!-- Usuários -->
+    <section class="view" id="view-users" hidden>
+      <div class="view__head">
+        <div>
+          <h1>Usuários</h1>
+          <p class="muted">Quem pode entrar no painel. Todos os usuários têm o mesmo acesso.</p>
+        </div>
+      </div>
+
+      <section class="requests" id="requestsBox" hidden>
+        <h2>Solicitações de acesso</h2>
+        <p class="muted">Pessoas que pediram para entrar no painel. Só entram se você aprovar.</p>
+        <div class="list" id="requestList"></div>
+      </section>
+
+      <div class="users">
+        <div class="list" id="userList"></div>
+
+        <div class="users__forms">
+          <form class="card" id="newUserForm" autocomplete="off">
+            <h2>Cadastrar usuário</h2>
+            <label class="field"><span>Usuário</span><input name="username" required minlength="3" maxlength="32" pattern="[a-zA-Z0-9._\-]{3,32}" autocapitalize="none" spellcheck="false" placeholder="ex.: bruno"></label>
+            <label class="field"><span>E-mail (usado para entrar)</span><input type="email" name="email" required maxlength="160" autocapitalize="none" spellcheck="false" placeholder="ex.: bruno@empresa.com"></label>
+            <label class="field"><span>Senha (mín. 8 caracteres)</span><input type="password" name="password" required minlength="8" autocomplete="new-password"></label>
+            <label class="field"><span>Confirmar senha</span><input type="password" name="confirm" required minlength="8" autocomplete="new-password"></label>
+            <p class="error" role="alert"></p>
+            <button class="btn btn--primary" type="submit">Cadastrar</button>
+          </form>
+
+          <form class="card" id="passwordForm">
+            <h2>Trocar minha senha</h2>
+            <label class="field"><span>Senha atual</span><input type="password" name="current" required autocomplete="current-password"></label>
+            <label class="field"><span>Nova senha (mín. 8 caracteres)</span><input type="password" name="password" required minlength="8" autocomplete="new-password"></label>
+            <label class="field"><span>Confirmar nova senha</span><input type="password" name="confirm" required minlength="8" autocomplete="new-password"></label>
+            <p class="error" role="alert"></p>
+            <button class="btn btn--primary" type="submit">Trocar senha</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Editor de projeto -->
+  <dialog class="editor" id="editor">
+    <form id="projectForm" method="dialog">
+      <header class="editor__head">
+        <h2 id="editorTitle">Novo projeto</h2>
+        <button class="icon-btn" type="button" data-cancel aria-label="Fechar">✕</button>
+      </header>
+
+      <div class="editor__body">
+        <div class="preview">
+          <video id="preview" muted loop playsinline></video>
+          <p class="muted" id="previewEmpty">Envie um vídeo para ver a prévia</p>
+        </div>
+
+        <div class="grid">
+          <label class="field field--full"><span>Título *</span><input name="title" required maxlength="200"></label>
+          <label class="field field--full"><span>Subtítulo (aparece na etiqueta)</span><input name="subtitle" maxlength="200" placeholder="Ex.: Disponível na Netflix"></label>
+          <label class="field"><span>Categoria</span>
+            <select name="category">
+              <option>Publicidade</option><option>Entretenimento</option><option>Institucional</option>
+              <option>Videoclipe</option><option>Documentário</option><option>Eventos</option>
+            </select>
+          </label>
+          <label class="field"><span>Ano</span><input name="year" type="number" min="1900" max="2100"></label>
+          <label class="field"><span>Cliente</span><input name="client" maxlength="200"></label>
+          <label class="field"><span>Direção</span><input name="director" maxlength="200"></label>
+
+          <div class="field field--full">
+            <span>Filme completo * (MP4, abre quando o visitante clica no play)</span>
+            <div class="upload">
+              <input name="video" required placeholder="/media/portfolio/arquivo.mp4 ou https://…">
+              <label class="btn btn--ghost">Enviar arquivo<input type="file" accept="video/mp4,video/webm,video/quicktime" data-upload="video" hidden></label>
+            </div>
+          </div>
+          <label class="field field--full">
+            <span>Link do YouTube (o botão “assistir” do site abre este vídeo no YouTube. Se vazio, abre o filme completo acima no próprio site)</span>
+            <input name="youtube" type="url" maxlength="300" inputmode="url" autocapitalize="none" spellcheck="false" placeholder="https://youtu.be/… ou https://www.youtube.com/watch?v=…">
+          </label>
+          <div class="field field--full">
+            <span>Trecho de fundo (MP4 curto, ~12 s, sem som; roda atrás do site. Se vazio, usa o filme completo)</span>
+            <div class="upload">
+              <input name="preview" placeholder="/media/portfolio/trecho.mp4">
+              <label class="btn btn--ghost">Enviar arquivo<input type="file" accept="video/mp4,video/webm,video/quicktime" data-upload="preview" hidden></label>
+            </div>
+          </div>
+          <div class="field field--full">
+            <span>Filme completo para celular (opcional, versão mais leve)</span>
+            <div class="upload">
+              <input name="videoMobile" placeholder="opcional">
+              <label class="btn btn--ghost">Enviar arquivo<input type="file" accept="video/mp4,video/webm,video/quicktime" data-upload="videoMobile" hidden></label>
+            </div>
+          </div>
+          <div class="field field--full">
+            <span>Imagem de capa (poster, aparece enquanto o vídeo carrega)</span>
+            <div class="upload">
+              <input name="poster" placeholder="/media/portfolio/capa.jpg">
+              <label class="btn btn--ghost">Enviar imagem<input type="file" accept="image/jpeg,image/png,image/webp" data-upload="poster" hidden></label>
+            </div>
+          </div>
+          <label class="field field--full"><span>Descrição</span><textarea name="description" rows="3" maxlength="2000"></textarea></label>
+          <label class="field"><span>Ordem</span><input name="order" type="number" step="1"></label>
+          <label class="check"><input type="checkbox" name="published" checked> Publicado no site</label>
+        </div>
+        <div class="progress" id="uploadProgress" hidden><span></span><em></em></div>
+      </div>
+
+      <footer class="editor__foot">
+        <p class="error" id="editorError" role="alert"></p>
+        <button class="btn btn--ghost" type="button" data-cancel>Cancelar</button>
+        <button class="btn btn--primary" type="submit" id="saveBtn">Salvar</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="/js/vendor/supabase.js" defer></script>
+  <script src="/js/supabase-config.js" defer></script>
+  <script src="/js/admin.js" defer></script>
+</body>
+</html>

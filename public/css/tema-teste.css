@@ -1,0 +1,196 @@
+/* =========================================================
+   TEMA DE TESTE: visual inspirado na referência enviada
+   (fundo grafite, títulos condensados, rótulos em fonte mono,
+   cantos retos), mantendo logo, degradê e conteúdo da HAVE.
+
+   Para desligar: remova as duas linhas marcadas "tema de teste"
+   no <head> do index.html. O site volta ao visual original.
+   ========================================================= */
+
+:root {
+  --bg: #2d2d2d;
+  --bg-deep: #242424;
+  --bg-card: #353535;
+  --fg: #f4f2ec;
+  --fg-dim: rgba(244, 242, 236, 0.66);
+  --fg-faint: rgba(244, 242, 236, 0.24);
+  --line: rgba(244, 242, 236, 0.14);
+  --font: "Work Sans", system-ui, sans-serif;
+  --display: "Anton", "Arial Narrow", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+  /* cor de destaque para textos pequenos: lilás claro tirado do degradê da HAVE (legível no grafite) */
+  --hl: #a99bff;
+}
+
+body { background: var(--bg); color: var(--fg); font-family: var(--font); }
+
+/* ---------- títulos: condensados, caixa alta ---------- */
+.hero-copy__title,
+.panel__title,
+.about-h,
+.identity__intro h2,
+.player__meta h2,
+.pf-card__title,
+.values h4,
+.steps h4,
+.studio-cta .about-h {
+  font-family: var(--display);
+  font-weight: 400;
+  font-stretch: normal;
+  letter-spacing: 0.005em;
+}
+.hero-copy__title { line-height: 0.95; }
+.panel__title { line-height: 0.92; }
+.pf-title { font-size: clamp(56px, 15cqi, 190px); line-height: 0.86; letter-spacing: 0; }
+.about-h { line-height: 1; }
+.identity__intro h2 { letter-spacing: 0; line-height: 0.95; }
+.values h4, .steps h4 { font-size: clamp(20px, 2vw, 26px); text-transform: uppercase; }
+.pf-card__title { font-size: clamp(22px, 2.2vw, 28px); line-height: 1; }
+
+/* ---------- rótulos e navegação: fonte mono ---------- */
+.eyebrow,
+.hero-copy__eyebrow,
+.nav__list a,
+.nav__mobile-footer a,
+.bar,
+.meta,
+.info__label,
+.info__tag,
+.values__n,
+.about-hero__tags li,
+.pf-chip,
+.pf-card__cat,
+.pf-count,
+.pf-cta__link,
+.hero-copy__cta,
+.identity__cta,
+.identity__brand p,
+.about-rows dt,
+.player__credits dt,
+.pods__count,
+.clip figcaption,
+.social-phone__ratio,
+.scroll-hint {
+  font-family: var(--mono);
+}
+.eyebrow,
+.hero-copy__eyebrow,
+.pf-card__cat,
+.values__n {
+  color: var(--hl);
+  letter-spacing: 0.14em;
+}
+/* rótulos que já usavam o degradê continuam com ele */
+.pf-eyebrow { letter-spacing: 0.14em; }
+.pf-card__cat { background: none; -webkit-background-clip: border-box; background-clip: border-box; }
+
+.nav__list a { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; }
+/* "Contato" vira o botão de destaque do menu, contornado */
+.nav__list li:last-child a {
+  padding: 9px 14px;
+  border: 1px solid var(--hl);
+  color: var(--hl);
+}
+.nav__list li:last-child a::after { display: none; }
+.nav__list li:last-child a:hover { background: var(--glow); border-color: transparent; color: #fff; }
+
+/* ---------- cantos retos ---------- */
+.pf-card,
+.pf-chip,
+.about-hero,
+.about-hero__tags li,
+.pods__slide,
+.pods__slide img,
+.pods__btn,
+.clip__frame,
+.player__frame,
+.social-phone,
+.social-phone__screen,
+.social-phone__ratio,
+.whats__btn,
+.whats-float,
+.field input,
+.field textarea,
+.field select,
+.form button,
+.intro__start span,
+.info__play {
+  border-radius: 0 !important;
+}
+.social-phone::before { border-radius: 0; }
+
+/* ---------- botões: retângulo contornado com rótulo mono ---------- */
+.hero-copy__cta,
+.identity__cta {
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.hero-copy__cta:hover,
+.identity__cta:hover {
+  background: var(--glow);
+  border-color: transparent;
+  color: #fff;
+}
+.pf-cta__link { font-weight: 500; letter-spacing: 0.1em; }
+
+.pf-chip {
+  padding: 11px 18px;
+  border-color: var(--line);
+  background: transparent;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--fg-dim);
+}
+.pf-chip[aria-pressed="true"] { background: var(--glow); color: #fff; }
+
+/* ---------- superfícies: grafite em vez de preto ---------- */
+.modal { background: rgba(37, 37, 37, 0.97); }
+#sobre { background: var(--bg-deep); }
+.intro,
+.intro__start { background: var(--bg-deep); }
+.values li { background: var(--bg); }
+.values li:hover { background: var(--bg-card); }
+.pf-card,
+.clip__frame,
+.pods__slide { background: var(--bg-card); }
+.pf-card { box-shadow: inset 0 0 0 1px var(--line); }
+
+/* cards do portfólio: cantos de visor de câmera no hover */
+.pf-card::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.35s, transform 0.5s var(--ease-out);
+  background:
+    linear-gradient(var(--fg), var(--fg)) top left / 18px 1px,
+    linear-gradient(var(--fg), var(--fg)) top left / 1px 18px,
+    linear-gradient(var(--fg), var(--fg)) top right / 18px 1px,
+    linear-gradient(var(--fg), var(--fg)) top right / 1px 18px,
+    linear-gradient(var(--fg), var(--fg)) bottom left / 18px 1px,
+    linear-gradient(var(--fg), var(--fg)) bottom left / 1px 18px,
+    linear-gradient(var(--fg), var(--fg)) bottom right / 18px 1px,
+    linear-gradient(var(--fg), var(--fg)) bottom right / 1px 18px;
+  background-repeat: no-repeat;
+}
+.pf-card:hover::after,
+.pf-card:focus-visible::after { opacity: 1; transform: none; }
+.pf-card:hover,
+.pf-card:focus-visible { box-shadow: inset 0 0 0 1px rgba(244, 242, 236, 0.4), 0 24px 60px rgba(106, 60, 255, 0.22); }
+.pf-card__play { top: 22px; right: 22px; }
+
+.pods__title .eyebrow { margin-bottom: 10px; }
+
+/* textos de apoio um pouco mais quentes */
+.about-lead,
+.hero-copy__lead { color: rgba(244, 242, 236, 0.84); }
+.identity__intro h2 span,
+.identity__brand p span { color: rgba(244, 242, 236, 0.55); }
